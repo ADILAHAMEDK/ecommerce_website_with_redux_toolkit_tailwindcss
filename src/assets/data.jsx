@@ -1,3 +1,5 @@
+import banner1 from '../assets/images/Multi-Banner-3.webp'
+
 export const categories = [
     "Electronics",
     "Fashion",
@@ -6,3 +8,9 @@ export const categories = [
     "Sports",
     "Automotive"
 ];
+
+
+export const assets = {
+    banner1:banner1,
+
+};
