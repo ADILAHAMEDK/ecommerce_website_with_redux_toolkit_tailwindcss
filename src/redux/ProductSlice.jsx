@@ -4,11 +4,11 @@ const initialState = {
     products:[],
 };
 
-export const productSlice = createSlice({
+const productSlice = createSlice({
     name:"products",
     initialState:initialState,
     reducers:{
-        getProducts(state, action){
+        getProducts:(state, action)=>{
             state.products = action.payload
         }
     }
