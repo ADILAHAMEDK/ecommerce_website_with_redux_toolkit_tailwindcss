@@ -5,6 +5,7 @@ import { RxDotFilled } from "react-icons/rx";
 import InfoSections from "../components/InfoSections";
 import CategorySection from "../components/CategorySection";
 import TopProducts from "../components/TopProducts";
+import Shop from "./Shop";
 
 const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -18,6 +19,7 @@ const Home = () => {
   };
 
   return (
+    <>
     <div className="bg-white my-2 px-4 md:px-16 lg:px-24">
       <div className="container mx-auto py-4 flex flex-col md:flex-row space-x-2">
         <div className="w-full md:w-3/12">
@@ -68,6 +70,8 @@ const Home = () => {
       <CategorySection />
       <TopProducts />
     </div>
+    <Shop/>
+    </>
   );
 };
 
