@@ -1,7 +1,17 @@
 import React from 'react'
 import { FaStar } from 'react-icons/fa'
+import { addToCart } from '../redux/CartSlice'
+import { useDispatch } from 'react-redux'
 
 const ProductCard = ({item, index}) => {
+  const dispatch = useDispatch()
+
+  const handleAddtoCart = (e, item)=>{
+    e.stopPropagation();
+    e.preventDefault()
+    dispatch(addToCart(item))
+    alert("Product Added Succesfully!")
+  }
   return (
     <div key={index} className='bg-white p-4 rounded relative border transform transition-transform
     duration-300 hover:scale-105 cursor-pointer'>
@@ -15,7 +25,8 @@ const ProductCard = ({item, index}) => {
         <FaStar className='text-yellow-500'/>
       </div>
       <div className='absolute bottom-4 right-2 flex items-center justify-center w-8 h-8 bg-red-600
-      group text-white text-sm rounded-full hover:w-32 hover:bg-red-700 transition-all'>
+      group text-white text-sm rounded-full hover:w-32 hover:bg-red-700 transition-all'
+      onClick={(e)=>handleAddtoCart(e, item)}>
         <span className='group-hover:hidden'>+</span>
         <span className='hidden group-hover:block'>Add to cart</span>
       </div>
