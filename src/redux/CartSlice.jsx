@@ -12,25 +12,24 @@ const initialState = {
     reducers:{
         addToCart:(state, action)=>{
             const newItem = action.payload;
-            const price = parseFloat(newItem.price);
             const itemIndex = state.products.find((item)=> item.id === newItem.id)
             
             if(itemIndex){
                 itemIndex.quantity++;
-                itemIndex.totalPrice += price
+                // itemIndex.totalPrice += newItem.price
                
             }else{
                 state.products.push({
                     id: newItem.id,
                     name: newItem.name,
                     image: newItem.image,
-                    price: price,
+                    price: newItem.price,
                     quantity: 1,
-                    totalPrice:price,    
+                    // totalPrice:newItem.price,    
                     
                 })
             }
-            state.totalPrice += price
+            state.totalPrice += newItem.price
             state.totalQuantity++;
         } 
     }

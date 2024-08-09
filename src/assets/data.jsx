@@ -30,63 +30,64 @@ export const data = [
     id: 1,
     image: tv,
     name: "Samsung Tv",
-    price: "49.99",
+    price: 49.99,
   },
   {
     id: 2,
     image: shirt,
     name: "Shirt",
-    price: "49.99",
+    price: 49.99,
   },
   {
     id: 3,
     image: shirt3,
     name: "Shirt",
-    price: "49.99",
+    price: 49.99,
   },
   {
     id: 4,
     image: watch,
     name: "Iphone watch",
-    price: "79.99",
+    price: 79.99,
   },
   {
     id: 5,
     image: phoneCover,
     name: "Phone Cover",
-    price: "79.99",
+    price: 79.99,
   },
   {
     id: 6,
     image: spray,
     name: "Spray",
-    price: "79.99",
+    price: 79.99,
   },
   {
     id: 7,
     image: speaker,
     name: "Speaker",
-    price: "79.99",
+    price: 79.99,
   },
   {
     id: 8,
     image: tablet,
     name: "Tablet",
-    price: "99.99",
+    price: 99.99,
   },
   {
     id: 9,
     image: shirt4,
     name: "Shirt",
-    price: "99.99",
+    price: 99.99,
   },
   {
     id: 10,
     image: laptop2,
     name: "Laptop",
-    price: "99.99",
+    price: 99.99,
   },
 ];
+
 
 
 

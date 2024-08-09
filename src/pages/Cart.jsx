@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import emtyCart from '../assets/images/emtycart.avif'
 import { FaTrashAlt } from 'react-icons/fa'
+import Modal from '../components/Modal'
+import ChangeAddress from '../components/ChangeAddress'
 
 const Cart = () => {
     const { products, totalQuantity, totalPrice } = useSelector((state)=> state.cart)
     const [address, setAddress] = useState('main street, 0012');
+    const [isModalOpen, setISModalOpen] = useState(false)
 
   return (
     <div className='container mx-auto py-8 min-h-96 px-4 md:px-16 lg:px-24'>
@@ -33,13 +36,13 @@ const Cart = () => {
                                     </div>
                                 </div>
                                 <div className='flex space-x-12 items-center'>
-                                    <p>${item.price.toFixed(2)}</p>
+                                    <p>${item.price}</p>
                                     <div className='flex items-center justify-center border'>
                                         <button className='text-xl font-bold px-1.5 border-r'>-</button>
                                         <p className='text-xl px-2 '>{item.quantity}</p>
                                         <button className='text-xl px-1 border-l'>+</button>
                                     </div>
-                                    <p>${(item.Price * item.quantity).toFixed(2)}</p>
+                                    <p>${item.price*item.quantity.toFixed(2)}</p>
                                     <button className='text-red-500 hover:text-red-700'><FaTrashAlt /></button>
                                 </div>
                             </div>
@@ -56,7 +59,7 @@ const Cart = () => {
                         <p>Shipping:</p>
                         <p className='ml-2'>Shipping to{""}</p>
                         <span className='text-xs font-bold'>{address}</span>
-                        <button className='text-blue-500 hover:underline mt-1 ml-2'>change address</button>
+                        <button onClick={()=>setISModalOpen(true)} className='text-blue-500 hover:underline mt-1 ml-2'>change address</button>
                     </div>
                     <div className='flex justify-between mb-4'>
                         <span>Total price:</span>
@@ -65,6 +68,9 @@ const Cart = () => {
                     <button className='w-full bg-red-600 text-white py-2 hover:bg-red-800'>Proceed to checkout </button>
                 </div>
             </div>
+            <Modal isModalOpen={isModalOpen} setISModalOpen={setISModalOpen}>
+            <ChangeAddress/>
+            </Modal>
         </div>
           :
          <div className='flex justify-center items-center'>
