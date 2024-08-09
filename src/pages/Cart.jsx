@@ -68,9 +68,10 @@ const Cart = () => {
                     <button className='w-full bg-red-600 text-white py-2 hover:bg-red-800'>Proceed to checkout </button>
                 </div>
             </div>
-            <Modal isModalOpen={isModalOpen} setISModalOpen={setISModalOpen}>
+            
+            {isModalOpen ? <Modal setISModalOpen={setISModalOpen}>
             <ChangeAddress/>
-            </Modal>
+            </Modal> : <></>}
         </div>
           :
          <div className='flex justify-center items-center'>
