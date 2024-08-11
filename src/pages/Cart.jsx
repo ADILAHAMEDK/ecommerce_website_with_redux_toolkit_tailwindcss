@@ -1,14 +1,30 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import emtyCart from '../assets/images/emtycart.avif'
 import { FaTrashAlt } from 'react-icons/fa'
 import Modal from '../components/Modal'
 import ChangeAddress from '../components/ChangeAddress'
+import { removeFromCart } from '../redux/CartSlice'
+import { increaseQuantity } from '../redux/CartSlice'
+import { decreaseQuantity } from '../redux/CartSlice'
 
 const Cart = () => {
     const { products, totalQuantity, totalPrice } = useSelector((state)=> state.cart)
+    const dispatch = useDispatch()
     const [address, setAddress] = useState('main street, 0012');
     const [isModalOpen, setISModalOpen] = useState(false)
+
+    const handleRemoveFromCart = (id)=>{
+        dispatch(removeFromCart(id))
+    }
+
+    const HandleIncreaseQuantity = (id)=>{
+        dispatch(increaseQuantity(id))
+    }
+
+    const HandleDecreamentQuantity = (id)=>{
+        dispatch(decreaseQuantity(id))
+    }
 
   return (
     <div className='container mx-auto py-8 min-h-96 px-4 md:px-16 lg:px-24'>
@@ -38,12 +54,12 @@ const Cart = () => {
                                 <div className='flex space-x-12 items-center'>
                                     <p>${item.price}</p>
                                     <div className='flex items-center justify-center border'>
-                                        <button className='text-xl font-bold px-1.5 border-r'>-</button>
+                                        <button onClick={()=>HandleDecreamentQuantity(item.id)} className='text-xl font-bold px-1.5 border-r'>-</button>
                                         <p className='text-xl px-2 '>{item.quantity}</p>
-                                        <button className='text-xl px-1 border-l'>+</button>
+                                        <button onClick={()=>HandleIncreaseQuantity(item.id)} className='text-xl px-1 border-l'>+</button>
                                     </div>
                                     <p>${item.price*item.quantity.toFixed(2)}</p>
-                                    <button className='text-red-500 hover:text-red-700'><FaTrashAlt /></button>
+                                    <button onClick={()=>handleRemoveFromCart(item.id)} className='text-red-500 hover:text-red-700'><FaTrashAlt /></button>
                                 </div>
                             </div>
                         ))}
@@ -70,7 +86,7 @@ const Cart = () => {
             </div>
             
             {isModalOpen ? <Modal setISModalOpen={setISModalOpen}>
-            <ChangeAddress/>
+            <ChangeAddress setAddress={setAddress} setISModalOpen={setISModalOpen}/>
             </Modal> : <></>}
         </div>
           :
