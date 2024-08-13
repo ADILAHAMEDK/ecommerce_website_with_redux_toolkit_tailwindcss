@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import ProductCard from "../components/ProductCard";
-import noProduct from "../assets/images/emtycart.avif";
+import noProduct from "../assets/images/not_found.png";
 
 const FilterData = () => {
   const { filteredData } = useSelector((state) => state.product);
