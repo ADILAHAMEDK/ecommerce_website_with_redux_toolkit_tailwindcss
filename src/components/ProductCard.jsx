@@ -3,6 +3,7 @@ import { FaStar } from 'react-icons/fa'
 import { addToCart } from '../redux/CartSlice'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const ProductCard = ({item, index}) => {
   const dispatch = useDispatch()
@@ -11,7 +12,8 @@ const ProductCard = ({item, index}) => {
     e.stopPropagation();
     e.preventDefault()
     dispatch(addToCart(item))
-    alert("Product Added Succesfully!")
+    toast.success("Product Added Succesfully!")
+    // alert("Product Added Succesfully!")
   }
   return (
     <Link to={`/detail/${item.id}`}>
