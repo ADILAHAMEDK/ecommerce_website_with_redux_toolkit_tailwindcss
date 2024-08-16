@@ -2,26 +2,28 @@ import React, { useEffect, useState } from "react";
 import { FaCarSide, FaQuestion } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-// import { addToCart } from '../redux/CartSlice'
+import { addToCartDetailPage } from '../redux/CartSlice'
 
 const ProductDetail = () => {
   const { id } = useParams();
   const products = useSelector((state) => state.product.products);
-  const [productDetail, setProductDetail] = useState();
+  // const [productDetail, setProductDetail] = useState();
   const [quantity, setQuantity] = useState(1);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const productDetailID = products.find((item) => item.id === parseInt(id));
-    console.log("productDetailId", productDetailID);
-    setProductDetail(productDetailID);
-  }, [id, products]);
+  // useEffect(() => {
+  //   const productDetailID = products.find((item) => item.id === parseInt(id));
+  //   console.log("productDetailId", productDetailID);
+  //   setProductDetail(productDetailID);
+  // }, [id, products]);
 
-  // const handleAddToCart = () => {
-  //     if (productDetail) {
-  //         dispatch(addToCart({ ...productDetail, quantity: parseInt(quantity) }));
-  //     }
-  // };
+  const productDetail = products.find((item) => item.id === parseInt(id));
+
+  const handleAddToCart = () => {
+      if (productDetail) {
+          dispatch(addToCartDetailPage({productDetail, quantity}));
+      }
+  };
 
   if (!productDetail) {
     return <div>Loading....</div>;
@@ -52,7 +54,7 @@ const ProductDetail = () => {
               onChange={(e) => setQuantity(e.target.value)}
               className="border p-1 w-16"
             />
-            <button className="bg-red-600 text-white py-1.5 px-4 hover:bg-red-800">
+            <button onClick={()=>handleAddToCart()} className="bg-red-600 text-white py-1.5 px-4 hover:bg-red-800">
               Add to Cart
             </button>
           </div>

@@ -13,10 +13,10 @@ const cartSlice = createSlice({
     addToCart: (state, action) => {
       const newItem = action.payload;
       const itemIndex = state.products.find((item) => item.id === newItem.id);
-      
-      if(itemIndex) {
+
+      if (itemIndex) {
         itemIndex.quantity++;
-        itemIndex.totalPrice += newItem.price
+        itemIndex.totalPrice += newItem.price;
       } else {
         state.products.push({
           id: newItem.id,
@@ -24,7 +24,7 @@ const cartSlice = createSlice({
           image: newItem.image,
           price: newItem.price,
           quantity: 1,
-          totalPrice:newItem.price,
+          totalPrice: newItem.price,
         });
       }
       state.totalPrice += newItem.price;
@@ -61,11 +61,39 @@ const cartSlice = createSlice({
         }
       }
     },
-    addToCartDetailPage:(state, action)=>{
+    addToCartDetailPage: (state, action) => {
+      const detailsData = action.payload;
+      console.log(detailsData, "detail");
+      const quantity = detailsData.quantity;
+      const productDetail = detailsData.productDetail;
 
-    }
+      const dataExist = state.products.find((item)=> item.id === productDetail.id)
+
+      if (dataExist) {
+        dataExist.quantity +=  Number(quantity)
+        dataExist.totalPrice += productDetail.price;
+      }else{
+        state.products.push({
+          id: productDetail.id,
+          name: productDetail.name,
+          image: productDetail.image,
+          price: productDetail.price,
+          quantity: quantity,
+          totalPrice: productDetail.price,
+        });
+
+      }
+      state.totalQuantity += Number(quantity);
+      state.totalPrice += Number(quantity) * Number(productDetail.price);
+    },
   },
 });
 
-export const { addToCart, removeFromCart, increaseQuantity, decreaseQuantity, addToCartDetailPage } = cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  increaseQuantity,
+  decreaseQuantity,
+  addToCartDetailPage,
+} = cartSlice.actions;
 export default cartSlice.reducer;

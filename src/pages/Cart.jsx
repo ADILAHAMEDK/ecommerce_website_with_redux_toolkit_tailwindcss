@@ -79,7 +79,8 @@ const Cart = () => {
                           +
                         </button>
                       </div>
-                      <p>${item.price * item.quantity.toFixed(2)}</p>
+                      {/* <p>${item.price * item.quantity.toFixed(2)}</p> */}
+                      <p>${(Number(item.price) * Number(item.quantity)).toFixed(2)}</p>
                       <button
                         onClick={() => handleRemoveFromCart(item.id)}
                         className="text-red-500 hover:text-red-700"
